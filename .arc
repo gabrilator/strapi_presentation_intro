@@ -4,7 +4,8 @@ begin-app
 @static
 
 @http
-
+get /foo
+put /bar
 @tables
 data
   scopeID *String
