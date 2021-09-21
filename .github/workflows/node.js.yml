@@ -1,0 +1,34 @@
+# This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+# This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+name: test CI with cypress
+
+on:
+  push:
+    branches:
+      - feature-g/prePushHook
+
+jobs:
+  cypress-run : 
+        runs-on: ubuntu-latest
+        steps:
+          - name: Checkout latest commit
+            uses: actions/checkout@v2
+          - name: Install yarn
+            run: npm install yarn -g
+              
+          - name: Install packages
+            run: yarn install
+
+          - name: Prepare cypress test
+            run: npm run start
+          - name: Load test API and DB
+            run: docker-compose up --build
+          - name: Run cypress tests
+            uses: cypress-io/github-action@v2
+            with:
+                browser: chrome
+                headless: true
+                spec: cypress/integration/contact/contact.specPass.js
