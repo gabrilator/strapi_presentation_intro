@@ -12,7 +12,7 @@
   "license": "ISC",
   "devDependencies": {
     "@architect/sandbox": "^1.9.2",
-    "mdx-deck": "^2.3.2"
+    "mdx-deck": "^4.1.1"
   },
   "dependencies": {
     "file-loader": "^2.0.0"
